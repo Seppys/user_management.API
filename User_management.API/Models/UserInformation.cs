@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace User_management.API.Models
 {
+
+    [Table("user_information")]
     public class UserInformation
     {
         public int Id { get; set; }
@@ -31,5 +33,9 @@ namespace User_management.API.Models
         public virtual User User { get; set; }
 
         public UserInformation() { }
+        public UserInformation(User user)
+        {
+            UserId = user.UserId;
+        }
     }
 }

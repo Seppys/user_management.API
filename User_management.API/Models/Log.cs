@@ -2,6 +2,7 @@
 
 namespace User_management.API.Models
 {
+    [Table("log")]
     public class Log
     {
         public int LogId { get; private set; }

@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using User_management.API.Utilities;
 
 namespace User_management.API.Models
 {
+    [Table("user")]
     public class User
     {
         public int UserId { get; private set; }
