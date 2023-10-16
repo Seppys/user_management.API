@@ -12,5 +12,7 @@ namespace User_management.API.Models
         public int UserId { get; private set; }
 
         public virtual User User { get; set; }
+
+        public Log() { }
     }
 }

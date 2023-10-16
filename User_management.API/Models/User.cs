@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using User_management.API.Utilities;
 
 namespace User_management.API.Models
 {
@@ -7,7 +8,7 @@ namespace User_management.API.Models
         public int UserId { get; private set; }
 
         [Required]
-        [RegularExpression("/^[a-zA-Z0-9_]+$/")]
+        [RegularExpression("[a-zA-Z0-9_]+")]
         [StringLength(20, MinimumLength = 5)]
         public string UserName { get; set; }
 
@@ -16,17 +17,19 @@ namespace User_management.API.Models
         public string Email { get; set; }
 
         [Required]
-        public string Password { get; }
+        public string Password { get; set; }
 
         public DateTime RegisterDate { get; }
 
-        public Rol Rol { get; set; }
+        private Rol Rol { get; set; }
+
+        public User() {}
 
         public User(string userName, string email, string password)
         {
             UserName = userName;
             Email = email;
-            Password = password;
+            Password = PasswordHasher.HashPassword(password);
             RegisterDate = DateTime.Now;
             Rol = Rol.User;
         }
