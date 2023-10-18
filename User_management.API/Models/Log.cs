@@ -12,7 +12,7 @@ namespace User_management.API.Models
         [ForeignKey("User")]
         public int UserId { get; private set; }
 
-        public virtual User User { get; set; }
+        public virtual UserRegister User { get; set; }
 
         public Log() { }
     }

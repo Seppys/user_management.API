@@ -7,7 +7,8 @@ namespace User_management.API.Models
     [Table("user_information")]
     public class UserInformation
     {
-        public int Id { get; set; }
+        [Key]
+        public int InformationId { get; set; }
 
         [StringLength(50, MinimumLength = 3)]
         public string? Firstname { get; set; }
@@ -27,15 +28,21 @@ namespace User_management.API.Models
         [StringLength(100)]
         public string? Description { get; set; }
 
-        [ForeignKey("User")]
+        public DateTime RegisterDate { get; }
+
+        public Role Role { get; set; }
+
+        [ForeignKey("UserRegister")]
         public int UserId { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual UserRegister UserRegister { get; set; }
 
         public UserInformation() { }
-        public UserInformation(User user)
+        public UserInformation(UserRegister user)
         {
             UserId = user.UserId;
+            RegisterDate = DateTime.Now;
+            Role = Role.User;
         }
     }
 }

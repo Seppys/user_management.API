@@ -1,6 +1,6 @@
 ﻿namespace User_management.API.Models
 {
-    public enum Rol
+    public enum Role
     {
         Admin,
         Owner,
