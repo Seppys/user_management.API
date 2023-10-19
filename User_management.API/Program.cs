@@ -19,6 +19,7 @@ builder.Services.AddDbContext<UsersContext>(options =>
     options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString"));
 });
 builder.Services.AddScoped<UsersContext>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddAuthentication(options =>
 {
