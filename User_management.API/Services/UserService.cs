@@ -14,6 +14,16 @@ namespace User_management.API.Services
         
         }
 
+        public List<UserInfo> GetAllUsers()
+        {
+            List<User> allUsers = _usersContext.User.ToList();
+
+            // Filter sensitive data
+            List<UserInfo> usersToReturn = allUsers.Select(u => new UserInfo(u)).ToList();
+
+            return usersToReturn;
+        }
+
         public dynamic GetUserFromUserId(int userId)
         {
             var user = _usersContext.User.FirstOrDefault(u => u.UserId == userId);
