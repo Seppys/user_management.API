@@ -8,8 +8,7 @@ namespace User_management.API.Models
         {
         }
 
-        public DbSet<UserRegister> UserRegister { get; set; }
-        public DbSet<UserInformation> UserInformation { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<Log> Logs { get; set; }
     }
 }

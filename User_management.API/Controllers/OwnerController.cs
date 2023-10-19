@@ -57,15 +57,13 @@ namespace User_management.API.Controllers
         public IActionResult DeleteUser(int userId)
         {
             var user = _userService.GetUserFromUserId(userId);
-            var userRegister = _userService.GetUserRegisterFromId(userId);
 
             if (user == null)
                 return NotFound("user not found");
             else if (_userService.GetRoleFromId(userId) == "Owner")
                 return BadRequest("Owner cannot be deleted");
 
-            _usersContext.UserRegister.Remove(userRegister);
-            _usersContext.UserInformation.Remove(user);
+            _usersContext.User.Remove(user);
             _usersContext.SaveChanges();
 
             return Ok();
