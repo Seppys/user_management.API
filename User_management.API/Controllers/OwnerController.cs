@@ -36,7 +36,7 @@ namespace User_management.API.Controllers
             return Ok();
         }
 
-        [HttpGet("removeadmin/userId")]
+        [HttpGet("removeadmin/{userId}")]
         public IActionResult RemoveAdmin(int userId)
         {
             var user = _userService.GetUserFromUserId(userId);
