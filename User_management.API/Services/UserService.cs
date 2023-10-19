@@ -20,6 +20,11 @@ namespace User_management.API.Services
             return user;
         }
 
+        public dynamic GetUserRegisterFromId(int userId)
+        {
+            var user = _usersContext.UserRegister.FirstOrDefault(u => u.UserId == userId);
+            return user;
+        }
         public int GetIdFromUsername(string username)
         {
             var users = _usersContext.UserRegister;
