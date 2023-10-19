@@ -14,7 +14,7 @@ namespace User_management.API.Services
             _userContext = userContext;
         }
 
-        public static string GenerateTokenJwt(string username, Role userRole)
+        public static string GenerateTokenJwt(string username, string userRole)
         {
             string secretKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY");
             string audienceToken = Environment.GetEnvironmentVariable("JWT_AUDIENCE_TOKEN");
@@ -27,7 +27,7 @@ namespace User_management.API.Services
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, username),
-                new Claim(ClaimTypes.Role, userRole.ToString())
+                new Claim(ClaimTypes.Role, userRole)
             }); ;
 
             var tokenHandler = new JwtSecurityTokenHandler();
