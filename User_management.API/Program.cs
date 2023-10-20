@@ -29,6 +29,18 @@ builder.Services.AddAuthentication(options =>
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = TokenService.GetTokenValidationParameters();
+
+        options.Events = new JwtBearerEvents
+        {
+            OnTokenValidated = async context =>
+            {
+                var userService = context.HttpContext.RequestServices.GetRequiredService<UserService>();
+                var username = context.Principal.Identity.Name;
+
+                if (!userService.UsernameExists(username))
+                    context.Fail("user not found in database");
+            }
+        };
     });
 
 builder.Services.AddAuthorization(options =>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using User_management.API.Models;
 
 namespace User_management.API.Services
@@ -12,6 +13,14 @@ namespace User_management.API.Services
         { 
             _usersContext = usersContext; 
         
+        }
+
+        public User GetUserFromClaims(ClaimsPrincipal claimsPrincipal)
+        {
+            var username = claimsPrincipal.Claims.FirstOrDefault(u => u.Type == ClaimTypes.Name).Value;
+            var userId = GetIdFromUsername(username);
+            var user = GetUserFromUserId(userId);
+            return user;
         }
 
         public List<UserInfo> GetAllUsers()
