@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using User_management.API.Models;
 
 namespace User_management.API.Services
@@ -63,6 +64,20 @@ namespace User_management.API.Services
         public string GetUsernameFromId(int id)
         {
             return _usersContext.User.First(u => u.UserId == id).Username;
+        }
+
+        public string GenerateRandomString(int stringLength)
+        {
+            string charsAllowed = "ABCDEFGHIJKLMONOPQRSTUVWXYZabcdefghijklmonopqrstuvwxyz0123456789_";
+            char[] randomChars = new char[stringLength];
+
+            for (int i = 0; i < stringLength; i++)
+            {
+                randomChars[i] = charsAllowed[RandomNumberGenerator.GetInt32(0, charsAllowed.Length - 1)];
+            }
+
+            string randomString = new string(randomChars);
+            return randomString;
         }
     }
 }
