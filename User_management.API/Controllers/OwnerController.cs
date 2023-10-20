@@ -52,21 +52,5 @@ namespace User_management.API.Controllers
 
             return Ok();
         }
-
-        [HttpGet("deleteuser/{userId}")]
-        public IActionResult DeleteUser(int userId)
-        {
-            var user = _userService.GetUserFromUserId(userId);
-
-            if (user == null)
-                return NotFound("user not found");
-            else if (_userService.GetRoleFromId(userId) == "Owner")
-                return BadRequest("Owner cannot be deleted");
-
-            _usersContext.User.Remove(user);
-            _usersContext.SaveChanges();
-
-            return Ok();
-        }
     }
 }
