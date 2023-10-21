@@ -48,6 +48,28 @@ namespace User_management.API.Controllers
             }
             return Unauthorized();
         }
+
+        [HttpPost("recoverpassword")]
+        public IActionResult RecoverPassword(PasswordRecoveryModel model)
+        {
+            User user = _usersContext.User.FirstOrDefault(u => u.Username == model.Username && u.Email == model.Email);
+
+            if (user == null)
+                return BadRequest("incorrect data");
+
+            string newPassword = _userService.GenerateRandomString(10);
+
+            string userEmail = user.Email;
+            string subject = "Password recovery";
+            string body = $"Your new password is <{newPassword}>. Please change it as soon as possible";
+
+            user.Password = PasswordHasherService.HashPassword(newPassword);
+            _usersContext.SaveChanges();
+
+            EmailService.SendEmail(userEmail, subject, body);
+
+            return Ok("An email with your new password has been sent to your email");
+        }
     }
 }
 

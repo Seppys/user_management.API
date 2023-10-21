@@ -20,7 +20,7 @@ namespace User_management.API.Services
                 var content = new StringContent(JsonConvert.SerializeObject(data), 
                     System.Text.Encoding.UTF8, "application/json");
 
-                client.PostAsync(emailSenderApiUrl, content);
+                await client.PostAsync(emailSenderApiUrl, content);
             }
         }
     }
