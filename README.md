@@ -6,6 +6,7 @@ User Management API ASP.Net Core API to manage users accounts and their role usi
 - User registration.
 - User authentication.
 - User's information change.
+- Recover password
 - As admin, get all user's information and delete accounts.
 - As owner, give and remove admin role
 
