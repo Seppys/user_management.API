@@ -6,7 +6,7 @@ namespace User_management.API.Services
     {
         public static async void SendEmail(string email, string subject, string body)
         {
-            string emailSenderApiUrl = "https://notificatorapi.azurewebsites.net/api/email/send";
+            string emailSenderApiUrl = "https://notificatorapi.onrender.com/api/email/send";
 
             var data = new
             {
